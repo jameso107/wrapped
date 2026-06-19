@@ -44,7 +44,13 @@ export default function CardRenderer({
   return (
     <CardShell
       theme={card.theme}
-      bleed={card.kind === "cover" ? <CoverBleed photo={card.photo} /> : null}
+      bleed={
+        card.kind === "cover" ? (
+          <CoverBleed photo={card.photo} />
+        ) : card.kind === "gallery" && card.collage ? (
+          <CollageBleed items={card.items} />
+        ) : null
+      }
     >
       <motion.div
         key={runKey}
@@ -68,6 +74,26 @@ function CoverBleed({ photo }: { photo?: string }) {
         className="h-full w-full opacity-40"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/40" />
+    </div>
+  );
+}
+
+// Full-bleed photo mosaic that tiles edge-to-edge across the whole slide
+// (used for the 10-photo Mush gallery), with a scrim so overlaid text reads.
+function CollageBleed({ items }: { items: { photo: string }[] }) {
+  return (
+    <div className="absolute inset-0 z-0">
+      <div className="grid h-full w-full grid-cols-2 grid-rows-5 gap-1">
+        {items.map((g, i) => (
+          <PhotoFrame
+            key={i}
+            src={g.photo}
+            rounded="rounded-none"
+            className="h-full w-full"
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/80" />
     </div>
   );
 }
@@ -176,6 +202,34 @@ function Inner({ card, runKey }: { card: Card; runKey: number }) {
       return <VacationIntro count={card.count} runKey={runKey} />;
 
     case "gallery": {
+      if (card.collage) {
+        return (
+          <>
+            {card.emoji && (
+              <motion.div
+                variants={item}
+                className="text-5xl drop-shadow-lg"
+              >
+                {card.emoji}
+              </motion.div>
+            )}
+            <motion.h2
+              variants={item}
+              className="mt-1 font-display text-4xl font-black drop-shadow-lg sm:text-5xl"
+            >
+              {card.title}
+            </motion.h2>
+            {card.subtitle && (
+              <motion.p
+                variants={item}
+                className="mt-3 max-w-xs text-sm text-white/90 drop-shadow-md"
+              >
+                {card.subtitle}
+              </motion.p>
+            )}
+          </>
+        );
+      }
       const cols =
         card.items.length > 8
           ? "grid-cols-4"

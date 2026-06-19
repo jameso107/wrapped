@@ -73,6 +73,9 @@ export type Card =
       emoji?: string;
       title: string;
       subtitle?: string;
+      // When true, photos tile edge-to-edge across the whole slide with the
+      // title overlaid, instead of small centered thumbnails.
+      collage?: boolean;
       items: { photo: string; label?: string }[];
     }
   | {

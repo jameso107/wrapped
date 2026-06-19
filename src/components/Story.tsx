@@ -52,13 +52,6 @@ export default function Story({ cards }: { cards: Card[] }) {
     setStarted(true);
     setDir(1);
     setIndex((i) => (i === 0 ? 1 : i));
-    const a = audioRef.current;
-    if (a) {
-      a.muted = false;
-      a.play().catch(() => {
-        /* autoplay can still be blocked; the mute button recovers it */
-      });
-    }
   }, []);
 
   const next = useCallback(() => {
@@ -115,6 +108,24 @@ export default function Story({ cards }: { cards: Card[] }) {
   useEffect(() => {
     if (audioRef.current) audioRef.current.muted = muted;
   }, [muted]);
+
+  // Start the music as early as the browser allows: attempt autoplay on load,
+  // and otherwise kick it off on the very first interaction anywhere (browsers
+  // block audible autoplay until a user gesture, so this is the earliest
+  // possible moment). The mute button still works because we never re-unmute.
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    const events = ["pointerdown", "touchstart", "keydown", "click"];
+    const onFirst = () => {
+      a.play().catch(() => {});
+      events.forEach((e) => window.removeEventListener(e, onFirst, true));
+    };
+    a.play().catch(() => {}); // best-effort autoplay on load
+    events.forEach((e) => window.addEventListener(e, onFirst, true));
+    return () =>
+      events.forEach((e) => window.removeEventListener(e, onFirst, true));
+  }, []);
 
   return (
     <div className="relative h-[100dvh] w-full overflow-hidden bg-black shadow-2xl sm:h-[92vh] sm:max-w-[440px] sm:rounded-[2.25rem]">

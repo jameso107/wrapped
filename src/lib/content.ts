@@ -47,7 +47,6 @@ export const STORY: Card[] = [
   {
     kind: "gallery",
     theme: "night",
-    eyebrow: "Us, lately",
     title: "A few of our favorite moments",
     subtitle:
       "Even from across the world, you're still the best part of every day.",
@@ -76,14 +75,14 @@ export const STORY: Card[] = [
     theme: "sunset",
     eyebrow: "Chapter two",
     title: "Memory Highlights",
-    body: "Our favorite places, faces, and one very well-traveled mushroom.",
+    body: "Our favorite places, faces, and two very well-traveled mushrooms.",
   },
   {
     kind: "vacation",
     theme: "gold",
     place: "Las Vegas",
     emoji: "🎰",
-    blurb: "What happens in Vegas… became one of our favorite stories.",
+    blurb: "What happens in Vegas… becomes some of our favorite stories.",
     photo: "/photos/highlights/vegas.jpg",
   },
   {
@@ -99,7 +98,7 @@ export const STORY: Card[] = [
     theme: "berry",
     emoji: "🐱",
     title: "Caterpillar",
-    subtitle: "Our resident wall-climber, doing what he does best.",
+    subtitle: "Our son is the best.",
     items: [
       { photo: "/photos/caterpillar/1.jpg" },
       { photo: "/photos/caterpillar/2.jpg" },
@@ -119,7 +118,9 @@ export const STORY: Card[] = [
     theme: "rose",
     emoji: "🍄",
     title: "Mush Around the World",
-    subtitle: "Our travel buddy, posing his way through the World Showcase.",
+    subtitle:
+      "Our travel buddy, posing her way through the World Showcase. Shockingly, she's not pissed.",
+    collage: true,
     items: [
       { photo: "/photos/mush/01.jpg" },
       { photo: "/photos/mush/02.jpg" },
@@ -154,7 +155,7 @@ export const STORY: Card[] = [
     theme: "night",
     emoji: "🏟️",
     title: "Michigan",
-    subtitle: "Game days and good company.",
+    subtitle: "Hail to the Victors.",
     items: [
       { photo: "/photos/michigan/1.jpg" },
       { photo: "/photos/michigan/2.jpg" },
@@ -200,6 +201,6 @@ export const STORY: Card[] = [
     kind: "outro",
     theme: "berry",
     title: "To be continued…",
-    body: "Here's to every hug, every Disney run, and every day still to come. I love you, I miss you, and I can't wait to see you soon! — James",
+    body: "Here's to every hug, every Disney adventure, and every day still to come. I love you, I miss you, and I can't wait to see you soon! — James",
   },
 ];
