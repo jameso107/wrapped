@@ -11,7 +11,8 @@
       "Bash(git symbolic-ref *)",
       "Bash(git remote *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=James -c user.email=james@syzygy.services commit -q -m ' *)"
+      "Bash(git -c user.name=James -c user.email=james@syzygy.services commit -q -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
