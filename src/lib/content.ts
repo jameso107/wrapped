@@ -191,7 +191,7 @@ export const STORY: Card[] = [
   },
   {
     kind: "countdown",
-    theme: "gold",
+    theme: "night",
     eyebrow: "Coming soon",
     title: "The Wedding",
     target: "2027-07-04T00:00:00",

@@ -19,7 +19,7 @@ function durationFor(card: Card): number {
     case "statList":
       return 6500;
     case "countdown":
-      return 8000;
+      return 11000;
     default:
       return 5500;
   }

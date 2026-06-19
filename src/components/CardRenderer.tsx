@@ -7,6 +7,7 @@ import { countdownTo, daysTogether } from "@/lib/dates";
 import { useCountUp } from "@/lib/useCountUp";
 import CardShell from "./CardShell";
 import PhotoFrame from "./PhotoFrame";
+import Fireworks from "./Fireworks";
 
 // Shared stagger animation for a card's contents.
 const container: Variants = {
@@ -49,6 +50,8 @@ export default function CardRenderer({
           <CoverBleed photo={card.photo} />
         ) : card.kind === "gallery" && card.collage ? (
           <CollageBleed items={card.items} />
+        ) : card.kind === "countdown" ? (
+          <Fireworks />
         ) : null
       }
     >
