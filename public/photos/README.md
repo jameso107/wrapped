@@ -1,36 +1,32 @@
 # Photos
 
-Drop image files into these folders. The app references them by the exact
-paths below (configured in `src/lib/content.ts`). Until a file exists, that
-card shows a tasteful "photo coming soon" placeholder — so the app always
-works, even with zero photos.
+These are the photos used by the story (paths configured in
+`src/lib/content.ts`). Missing files fall back to a "photo coming soon"
+placeholder, so the app never breaks.
 
 ```
 public/photos/
-├── cover/
-│   └── cover.jpg              ← full-screen cover background
-├── moments/
-│   └── us.jpg                 ← the "Us, lately" card
-├── proposal/
-│   └── 1.jpg                  ← the engagement card
-└── vacations/
-    ├── vegas/1.jpg
-    ├── dc/1.jpg
-    ├── disney-1/1.jpg
-    ├── santa-barbara/1.jpg
-    ├── chicago/1.jpg
-    └── disney-2/1.jpg
+├── cover/cover.jpg            ← title-screen background
+├── moments/1.jpg … 6.jpg      ← "favorite moments" collage
+├── caterpillar/1.jpg, 2.jpg   ← the cat ("Caterpillar")
+├── mush/01.jpg … 10.jpg       ← "Mush Around the World" gallery (Disney/EPCOT)
+├── michigan/1.jpg, 2.jpg      ← Michigan gallery
+├── proposal/1.jpg             ← engagement card
+└── highlights/                ← single-photo highlight cards
+    ├── first-date.jpg
+    ├── vegas.jpg
+    ├── dc.jpg
+    ├── frankenmush.jpg         (Frankenmuth / "Christmush" tradition)
+    ├── santa-barbara.jpg
+    ├── chicago.jpg
+    └── disney2.jpg             (Disney, round two)
 ```
 
-## Tips
-- **Filenames are case-sensitive** on the deployed server (Vercel/Linux).
-  `cover.jpg` ≠ `Cover.JPG`. Match the paths above exactly, or update the
-  paths in `src/lib/content.ts`.
-- `.jpg`, `.png`, `.webp`, and `.heic`→convert-to-jpg all work as long as the
-  path in `content.ts` matches.
-- **Orientation:** cover and proposal cards look best with portrait photos;
-  vacation cards use a 4:3 frame.
-- Want more than one photo per place, or a photo on a different card? Tell me
-  and I'll add a multi-photo / carousel card type — the engine is set up for it.
-- Compress large phone photos before committing (a 12 MP photo is ~5 MB; that
-  adds up fast in git). Something like 2000px on the long edge is plenty.
+## Notes
+- **Filenames are case-sensitive** on Vercel (Linux). Match these paths exactly,
+  or update `src/lib/content.ts`.
+- iPhone EXIF rotation is honored by browsers, so sideways-looking files display
+  upright on the site — no manual rotation needed.
+- To add/remove a photo from a gallery, edit that card's `items` array in
+  `src/lib/content.ts` and drop the file in the matching folder.
+- To swap a single-photo card, just replace the file at the same path.

@@ -175,15 +175,64 @@ function Inner({ card, runKey }: { card: Card; runKey: number }) {
     case "vacationIntro":
       return <VacationIntro count={card.count} runKey={runKey} />;
 
+    case "gallery": {
+      const cols =
+        card.items.length > 8
+          ? "grid-cols-4"
+          : card.items.length > 4
+            ? "grid-cols-3"
+            : "grid-cols-2";
+      return (
+        <>
+          {card.eyebrow && <Eyebrow>{card.eyebrow}</Eyebrow>}
+          {card.emoji && (
+            <motion.div variants={item} className="text-5xl">
+              {card.emoji}
+            </motion.div>
+          )}
+          <motion.h2
+            variants={item}
+            className="mt-1 font-display text-3xl font-bold sm:text-4xl"
+          >
+            {card.title}
+          </motion.h2>
+          {card.subtitle && (
+            <motion.p variants={item} className="mt-2 text-sm text-white/80">
+              {card.subtitle}
+            </motion.p>
+          )}
+          <motion.div
+            variants={item}
+            className={`mt-5 grid w-full gap-2 ${cols}`}
+          >
+            {card.items.map((g, i) => (
+              <div key={i} className="flex flex-col items-center gap-1">
+                <PhotoFrame
+                  src={g.photo}
+                  rounded="rounded-xl"
+                  className="aspect-square w-full shadow-lg"
+                />
+                {g.label && (
+                  <span className="text-[10px] text-white/70">{g.label}</span>
+                )}
+              </div>
+            ))}
+          </motion.div>
+        </>
+      );
+    }
+
     case "vacation":
       return (
         <>
-          <motion.div
-            variants={item}
-            className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-white/40 font-display text-xl font-bold"
-          >
-            {card.number}
-          </motion.div>
+          {card.number != null && (
+            <motion.div
+              variants={item}
+              className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-white/40 font-display text-xl font-bold"
+            >
+              {card.number}
+            </motion.div>
+          )}
           <motion.div variants={item} className="text-6xl">
             {card.emoji}
           </motion.div>

@@ -4,10 +4,7 @@ import type { Card } from "./types";
 // THE STORY
 //
 // This array IS the app. Each entry is one full-screen card, shown in order.
-// Edit the copy freely. Add a `photo` path (relative to /public) to any card
-// that supports it — until the file exists, a styled placeholder shows.
-//
-// Photo paths live under /public/photos/... (see public/photos/README.md).
+// Edit the copy freely. Photo paths are relative to /public.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const STORY: Card[] = [
@@ -33,24 +30,39 @@ export const STORY: Card[] = [
     body: "It feels so right, to be here with you",
   },
   {
-    kind: "bigNumber",
+    kind: "photo",
     theme: "rose",
+    eyebrow: "Our first date",
+    photo: "/photos/highlights/first-date.jpg",
+    caption: "Where it all began.",
+  },
+  {
+    kind: "bigNumber",
+    theme: "berry",
     pre: "Since that night, that's",
     value: "daysTogether",
     label: "days together",
     sub: "…not that anyone's counting.",
   },
   {
-    kind: "photo",
-    theme: "berry",
+    kind: "gallery",
+    theme: "night",
     eyebrow: "Us, lately",
-    photo: "/photos/moments/us.jpg",
-    caption:
+    title: "A few of our favorite moments",
+    subtitle:
       "Even from across the world, you're still the best part of every day.",
+    items: [
+      { photo: "/photos/moments/1.jpg" },
+      { photo: "/photos/moments/2.jpg" },
+      { photo: "/photos/moments/3.jpg" },
+      { photo: "/photos/moments/4.jpg" },
+      { photo: "/photos/moments/5.jpg" },
+      { photo: "/photos/moments/6.jpg" },
+    ],
   },
   {
     kind: "statList",
-    theme: "night",
+    theme: "plum",
     title: "By the numbers",
     items: [
       { label: "Vacations taken", value: "6(+)" },
@@ -60,63 +72,102 @@ export const STORY: Card[] = [
     ],
   },
   {
-    kind: "vacationIntro",
+    kind: "text",
     theme: "sunset",
-    count: 6,
+    eyebrow: "Chapter two",
+    title: "Memory Highlights",
+    body: "Our favorite places, faces, and one very well-traveled mushroom.",
   },
   {
     kind: "vacation",
     theme: "gold",
-    number: 1,
     place: "Las Vegas",
     emoji: "🎰",
     blurb: "What happens in Vegas… became one of our favorite stories.",
-    photo: "/photos/vacations/vegas/1.jpg",
+    photo: "/photos/highlights/vegas.jpg",
   },
   {
     kind: "vacation",
     theme: "night",
-    number: 2,
     place: "Washington, D.C.",
     emoji: "🏛️",
     blurb: "Monuments, museums, and a lot of walking. Worth every step.",
-    photo: "/photos/vacations/dc/1.jpg",
+    photo: "/photos/highlights/dc.jpg",
   },
   {
-    kind: "vacation",
+    kind: "gallery",
     theme: "berry",
-    number: 3,
-    place: "Disney World",
-    emoji: "🏰",
-    blurb: "The happiest place on earth. Round one.",
-    photo: "/photos/vacations/disney-1/1.jpg",
-  },
-  {
-    kind: "vacation",
-    theme: "sunset",
-    number: 4,
-    place: "Santa Barbara",
-    emoji: "🌅",
-    blurb: "Even rain can't stop us from having a great time.",
-    photo: "/photos/vacations/santa-barbara/1.jpg",
+    emoji: "🐱",
+    title: "Caterpillar",
+    subtitle: "Our resident wall-climber, doing what he does best.",
+    items: [
+      { photo: "/photos/caterpillar/1.jpg" },
+      { photo: "/photos/caterpillar/2.jpg" },
+    ],
   },
   {
     kind: "vacation",
     theme: "plum",
-    number: 5,
+    place: "Frankenmush",
+    emoji: "🎄",
+    dates: "A Christmush tradition",
+    blurb: "Zehnder's, twinkle lights, and chicken dinners — every year.",
+    photo: "/photos/highlights/frankenmush.jpg",
+  },
+  {
+    kind: "gallery",
+    theme: "rose",
+    emoji: "🍄",
+    title: "Mush Around the World",
+    subtitle: "Our travel buddy, posing his way through the World Showcase.",
+    items: [
+      { photo: "/photos/mush/01.jpg" },
+      { photo: "/photos/mush/02.jpg" },
+      { photo: "/photos/mush/03.jpg" },
+      { photo: "/photos/mush/04.jpg" },
+      { photo: "/photos/mush/05.jpg" },
+      { photo: "/photos/mush/06.jpg" },
+      { photo: "/photos/mush/07.jpg" },
+      { photo: "/photos/mush/08.jpg" },
+      { photo: "/photos/mush/09.jpg" },
+      { photo: "/photos/mush/10.jpg" },
+    ],
+  },
+  {
+    kind: "vacation",
+    theme: "sunset",
+    place: "Santa Barbara",
+    emoji: "🌅",
+    blurb: "Even rain can't stop us from having a great time.",
+    photo: "/photos/highlights/santa-barbara.jpg",
+  },
+  {
+    kind: "vacation",
+    theme: "plum",
     place: "Chicago",
     emoji: "🌆",
     blurb: "Deep dish, the skyline, and the cold for our two-year anniversary!",
-    photo: "/photos/vacations/chicago/1.jpg",
+    photo: "/photos/highlights/chicago.jpg",
+  },
+  {
+    kind: "gallery",
+    theme: "night",
+    emoji: "🏟️",
+    title: "Michigan",
+    subtitle: "Game days and good company.",
+    items: [
+      { photo: "/photos/michigan/1.jpg" },
+      { photo: "/photos/michigan/2.jpg" },
+    ],
   },
   {
     kind: "vacation",
     theme: "rose",
-    number: 6,
     place: "Disney World",
     emoji: "🏰",
-    blurb: "Round two, and many more to come",
-    photo: "/photos/vacations/disney-2/1.jpg",
+    dates: "Round two",
+    blurb: "Round two, and many more to come.",
+    photo: "/photos/highlights/disney2.jpg",
   },
   {
     kind: "text",

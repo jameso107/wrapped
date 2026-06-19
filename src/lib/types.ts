@@ -59,12 +59,21 @@ export type Card =
   | {
       kind: "vacation";
       theme: Theme;
-      number: number;
+      number?: number;
       place: string;
       emoji: string;
       dates?: string;
       blurb: string;
       photo?: string;
+    }
+  | {
+      kind: "gallery";
+      theme: Theme;
+      eyebrow?: string;
+      emoji?: string;
+      title: string;
+      subtitle?: string;
+      items: { photo: string; label?: string }[];
     }
   | {
       kind: "proposal";
