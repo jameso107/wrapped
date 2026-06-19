@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #0a0a23;
+  color: #fff;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Lock the experience to a single screen; the story handles its own paging. */
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Prevent the blue tap highlight on mobile when paging through cards. */
+* {
+  -webkit-tap-highlight-color: transparent;
+}

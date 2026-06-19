@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm view *)",
+      "Bash(npm install *)",
+      "Bash(npm audit *)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const j=JSON.parse\\(d\\);for\\(const k in j.vulnerabilities\\){const v=j.vulnerabilities[k];console.log\\(v.severity.toUpperCase\\(\\),'-',k,'-',\\(v.via||[]\\).map\\(x=>typeof x==='string'?x:x.title\\).join\\('; '\\)\\);}}\\)\")",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const j=JSON.parse\\(d\\);for\\(const k in j.vulnerabilities\\){const v=j.vulnerabilities[k];console.log\\(v.severity.toUpperCase\\(\\),'-',k,'-',\\(v.via||[]\\).map\\(x=>typeof x==='string'?x:x.title\\).join\\('; '\\),'| fixAvailable:',JSON.stringify\\(v.fixAvailable\\)\\);}}\\)\")",
+      "Bash(npm run *)",
+      "Bash(git init *)",
+      "Bash(git symbolic-ref *)",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=James -c user.email=james@syzygy.services commit -q -m ' *)"
+    ]
+  }
+}
