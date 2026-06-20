@@ -1,6 +1,10 @@
 // The visual theme (background gradient) applied to a card.
 export type Theme = "plum" | "rose" | "sunset" | "berry" | "gold" | "night";
 
+// Optional decorative particle overlays a card can render on top of its
+// content (see Effects.tsx).
+export type EffectKind = "snow" | "petals" | "pixie" | "confetti" | "sparkle";
+
 // Gradient classes per theme. Tailwind needs the full class strings present
 // in source so they aren't purged.
 export const THEME_GRADIENTS: Record<Theme, string> = {
@@ -20,6 +24,7 @@ export type Card =
       title: string;
       subtitle: string;
       photo?: string;
+      effects?: EffectKind[];
     }
   | {
       kind: "bigNumber";
@@ -65,6 +70,7 @@ export type Card =
       dates?: string;
       blurb: string;
       photo?: string;
+      effects?: EffectKind[];
     }
   | {
       kind: "gallery";
@@ -83,6 +89,7 @@ export type Card =
       theme: Theme;
       date: string;
       photo?: string;
+      effects?: EffectKind[];
     }
   | {
       kind: "countdown";

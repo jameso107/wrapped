@@ -7,11 +7,14 @@ export default function CardShell({
   theme,
   children,
   bleed,
+  overlay,
 }: {
   theme: Theme;
   children: React.ReactNode;
   // When provided, renders full-bleed behind the content (e.g. a cover photo).
   bleed?: React.ReactNode;
+  // When provided, renders on top of the content (e.g. particle effects).
+  overlay?: React.ReactNode;
 }) {
   return (
     <div
@@ -24,6 +27,7 @@ export default function CardShell({
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-8 py-20 text-center">
         {children}
       </div>
+      {overlay}
     </div>
   );
 }

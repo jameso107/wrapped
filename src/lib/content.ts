@@ -14,6 +14,7 @@ export const STORY: Card[] = [
     title: "Hannah + James",
     subtitle: "Wrapped · 2.5 Years",
     photo: "/photos/cover/cover.jpg",
+    effects: ["petals"],
   },
   {
     kind: "text",
@@ -112,6 +113,7 @@ export const STORY: Card[] = [
     dates: "A Christmush tradition",
     blurb: "Zehnder's, twinkle lights, and chicken dinners — every year.",
     photo: "/photos/highlights/frankenmush.jpg",
+    effects: ["snow"],
   },
   {
     kind: "gallery",
@@ -169,6 +171,7 @@ export const STORY: Card[] = [
     dates: "Round two",
     blurb: "Round two, and many more to come.",
     photo: "/photos/highlights/disney2.jpg",
+    effects: ["pixie"],
   },
   {
     kind: "text",
@@ -182,6 +185,7 @@ export const STORY: Card[] = [
     theme: "rose",
     date: "March 7, 2026",
     photo: "/photos/proposal/1.jpg",
+    effects: ["confetti", "sparkle"],
   },
   {
     kind: "text",

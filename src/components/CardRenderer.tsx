@@ -8,6 +8,11 @@ import { useCountUp } from "@/lib/useCountUp";
 import CardShell from "./CardShell";
 import PhotoFrame from "./PhotoFrame";
 import Fireworks from "./Fireworks";
+import Effect from "./Effects";
+
+// Sweeping light glint across big display titles.
+const SHIMMER =
+  "bg-gradient-to-r from-white via-sky-200 to-white bg-[length:200%_100%] bg-clip-text text-transparent animate-shimmer";
 
 // Shared stagger animation for a card's contents.
 const container: Variants = {
@@ -42,6 +47,13 @@ export default function CardRenderer({
   card: Card;
   runKey: number;
 }) {
+  const effects =
+    card.kind === "cover" ||
+    card.kind === "vacation" ||
+    card.kind === "proposal"
+      ? card.effects
+      : undefined;
+
   return (
     <CardShell
       theme={card.theme}
@@ -52,6 +64,15 @@ export default function CardRenderer({
           <CollageBleed items={card.items} />
         ) : card.kind === "countdown" ? (
           <Fireworks />
+        ) : null
+      }
+      overlay={
+        effects && effects.length ? (
+          <>
+            {effects.map((e, i) => (
+              <Effect key={`${e}-${i}`} kind={e} />
+            ))}
+          </>
         ) : null
       }
     >
@@ -114,7 +135,7 @@ function Inner({ card, runKey }: { card: Card; runKey: number }) {
           </motion.p>
           <motion.h1
             variants={item}
-            className="font-display text-6xl font-black leading-[0.95] drop-shadow-lg sm:text-7xl"
+            className={`font-display text-6xl font-black leading-[0.95] drop-shadow-lg sm:text-7xl ${SHIMMER}`}
           >
             {card.title}
           </motion.h1>
@@ -370,6 +391,33 @@ function Inner({ card, runKey }: { card: Card; runKey: number }) {
   }
 }
 
+// A one-shot ring of dots that bursts outward — fired when a counter lands.
+function SparkleBurst() {
+  const dots = Array.from({ length: 16 });
+  return (
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      {dots.map((_, i) => {
+        const ang = (i / dots.length) * Math.PI * 2;
+        const dist = 80 + (i % 3) * 22;
+        return (
+          <motion.span
+            key={i}
+            className="absolute h-2 w-2 rounded-full bg-white"
+            initial={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            animate={{
+              opacity: 0,
+              x: Math.cos(ang) * dist,
+              y: Math.sin(ang) * dist,
+              scale: 0.2,
+            }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 function BigNumber({
   card,
   target,
@@ -380,6 +428,12 @@ function BigNumber({
   runKey: number;
 }) {
   const value = useCountUp(target, 1500, runKey);
+  const [landed, setLanded] = useState(false);
+  useEffect(() => {
+    setLanded(false);
+    const id = setTimeout(() => setLanded(true), 1550);
+    return () => clearTimeout(id);
+  }, [runKey]);
   return (
     <>
       {card.pre && (
@@ -389,10 +443,11 @@ function BigNumber({
       )}
       <motion.div
         variants={item}
-        className="font-display text-8xl font-black leading-none sm:text-9xl"
+        className="relative font-display text-8xl font-black leading-none sm:text-9xl"
       >
         {value.toLocaleString()}
         {card.suffix}
+        {landed && <SparkleBurst />}
       </motion.div>
       <motion.p
         variants={item}
@@ -460,7 +515,7 @@ function Countdown({ card }: { card: Extract<Card, { kind: "countdown" }> }) {
       <Eyebrow>{card.eyebrow}</Eyebrow>
       <motion.h2
         variants={item}
-        className="font-display text-5xl font-black sm:text-6xl"
+        className={`font-display text-5xl font-black sm:text-6xl ${SHIMMER}`}
       >
         {card.title}
       </motion.h2>
