@@ -515,7 +515,7 @@ function Countdown({ card }: { card: Extract<Card, { kind: "countdown" }> }) {
       <Eyebrow>{card.eyebrow}</Eyebrow>
       <motion.h2
         variants={item}
-        className={`font-display text-5xl font-black sm:text-6xl ${SHIMMER}`}
+        className={`font-display text-5xl font-black leading-[1.2] pb-2 sm:text-6xl ${SHIMMER}`}
       >
         {card.title}
       </motion.h2>
